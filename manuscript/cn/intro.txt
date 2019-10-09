@@ -461,25 +461,32 @@ ZF3 provides the following features to ensure its performance is acceptable:
     can be used to speed-up ZF3-based websites. Caching saves frequently 
     used data to memory to speed-up data retrieval. 
 
-## Design Patterns
+## 设计模式
 
 Zend Framework 3 creators are big fans of various design patterns. Although
 you don't have to understand patterns to read this book, this section is intended
 to give you an idea of what design patterns ZF3 is based on.
 
-* *Model-View-Controller (MVC) pattern*. Model-View-Controller pattern is used in all modern PHP
-  frameworks. In an MVC-application you separate your code into three categories:
-  models (your business logic go here), views (your presentation goes here) and
-  controllers (code responsible for interaction with user goes here). This is also 
-  called *the separation of concerns*. With MVC, you can *reuse* your components. It is also easy to substitute any part
-  of this triad. For example, you can easily replace a view with another one, without
-  changing your business logic. 
-  
-* *Domain Driven Design (DDD) pattern*. In Zend Framework 3, by convention, you will have model 
-  layer further divided into *entities* (classes mapped on database tables), 
+Zend Framework 3 创建者是各种各样的设计模式的骨灰粉. 尽管你读通这本书不必去理解设计模式.
+这一部分想要给予你一个想法, 关于 ZF3 是基于何种设计模式的.
+
+* *Model-View-Controller (MVC) 模式*. Model-View-Controller pattern 被使用在所有现代 PHP 框架中.
+  在一个 MVC 应用中, 你分离你的代码到三种分类当中: models (你的商业逻辑在这里), views (你的展示在这里),
+  以及 controllers (用户的动作给出的代码响应在这里). 这也被称为 *the separation of concerns*. 使用
+  MVC, 你能 *复用* 你的组件, 也能简单地去组合. 举个例子, 你能简单地用一个 view 去替换掉另一个. 不用去
+  改变你的商业逻辑.
+
+* *Domain Driven Design (DDD) pattern*. In Zend Framework 3, by convention, you will have model
+  layer further divided into *entities* (classes mapped on database tables),
   *repositories* (classes used to retrieve entities from database),
   *value objects* (model classes not having identity),
-  *services* (classes responsible for business logic).  
+  *services* (classes responsible for business logic).
+
+* *Domain Driven Design (DDD) 模式* 在 Zend Framework 3, 为了方便, 你会把 model 层更进一步地分成
+  *entities* (类映射到数据库表),
+  *repositories* (类过去常常从数据库检索 entities)
+  *value object* (没有身份的model 类)
+  *services* (商业逻辑的类响应)
   
 * *Aspect Oriented Design pattern.* In ZF3, everything is event-driven.
   When a site user requests a page, an *event* is generated (triggered). A listener (or observer) can
@@ -487,43 +494,72 @@ to give you an idea of what design patterns ZF3 is based on.
   parses the URL and determines what controller class to call. When the event finally reaches the page
   renderer, an HTTP response is generated and the user sees the web page.
 
+* *Aspect Oriented Design pattern*. 在 ZF3中, 每件事都是事件驱动的.
+  当一个站点用户请求一个页面, 一个 *事件* 被生成(触发). 一个监听者(或者是观察者) 捕获事件, 对其相应做一些事.
+  举个例子, @`Zend\Router` 组件解析 URL 以及证明哪个 Controller 类被调用. 当事件最终到达渲染器,
+  一个 HTTP 相应被生成, 用户就可以看到这个网页了.
+
 * *Singleton pattern.* In ZF3, there is the service manager object which is the centralized
   container of all services available in the application. Each service exists in a single
-  instance only. 
+  instance only.
+
+* *Singleton pattern*. 在 ZF3 中, 那里有一个包含所有可以在应用中可用的服务的集中容器, 叫做服务管理对象.
+  每一个服务仅仅存在于一个单例实例当中.
 
 * *Strategy pattern.* A strategy is
   just a class encapsulating some algorithm. And you can use different algorithms based on 
   some condition. For example, the page renderer has several rendering strategies,
   making it possible to render web pages differently
   (the renderer can generate an HTML page, a JSON response, an RSS feed etc.)
+
+* *Strategy pattern.* 一个策略仅仅是一个封装一些算法的类. 基于条件,你能使用不同的算法.
+  举个例子, 网页渲染器有若干渲染策略, 使得渲染网页各不一样成为可能
+  (这个渲染器能生成一个 HTML 页面, 一个 JSON 响应, 一个 RSS 馈送等等.)
   
 * *Adapter pattern.* Adapters allow to adapt a generic class to concrete use case.
   For example, @`Zend\Db` component provides access to database in a generic way. 
   Internally, it uses adapters for each supported database (SQLite, MySQL, PostgreSQL and so on.)
+
+* *Adapter pattern.* 适配器允许适配一个通用的类凝结使用案例. 举个例子, @`Zend\Db` 组件提供
+  一种通用的方式访问数据库. 在内部, 它使用适配器以应对支持的数据库(SQLite, MySQL, PostgreSQL等等.)
   
 * *Factory pattern.* You can create an instance of a class using the `new` operator. Or you can create it
   with a factory. A factory is just a class encapsulating creation of other objects. 
   Factories are useful, because they simplify dependency injection. Using factories also
   simplifies the testing of your model and controller classes.
 
+* *Factory pattern.* 你能使用 `new` 操作方式创建一个类的实例. 或者你可以用工厂方式来创建它.
+  一个工厂仅仅是封装了其他对象创建方式的类. 工厂是十分有用的, 因为他们简化了依赖注入. 使用工厂也
+  简化了对于你的 model 和 controller 的测试
+
 ## Main ZF3 Components
+## ZF3 主要组件
 
 ZF3 developers believe that the framework should be a set of decoupled
 components with minimum dependencies on each other. This is how ZF3 is 
-organized. 
+organized.
+
+ZF3 开发者相信框架应该是一套不挂钩的, 相互之间有极小依赖的组件. 这就是 ZF3 如何组织的原因.
 
 The idea was to let you use some selected ZF3 components alone,
 even if you write your site with another framework. This becomes
 even easier, keeping in mind that each component of ZF3 is a Composer-installable
 package, so you can easily install any ZF3-component together with its dependencies through a single command.
 
-There are several "main" ZF3 components that are used (either explicitly or implicitly) 
-in almost any web application: 
+这种想法是让你单独使用一些被选择的 ZF3 组件, 甚至你用其他框架写你的站点. 这样变得甚至更为简单
+记住, ZF3的组件是一个 Composer-installable 包,
+所以你能轻而易举地安装任何 ZF3 组件和他所关联的依赖, 通过一个简单的命令
 
-  * @`Zend\EventManager` component allows to send events and register listeners to react to them. 
+There are several "main" ZF3 components that are used (either explicitly or implicitly) 
+in almost any web application:
+以下是使用在几乎任何网络应用选下几个主要的 ZF3 组件:
+
+  * @`Zend\EventManager` component allows to send events and register listeners to react to them.
+  * @`Zend\EventManager` 组件允许发送事件以及注册监听者去对其作出反应.
      
   * @`Zend\ModuleManager`. In ZF3, every application consists of modules and this component contains
-     module loading functionality.                                                  
+     module loading functionality.
+  * @`Zend\ModuleManager`. 在 ZF3 中, 每个应用由模块和组件读取功能性包含模块组成.
 
   * @`Zend\ServiceManager`.  This is the centralized registry of all services available in the application, 
      making it possible to access services from any point of the web site.
