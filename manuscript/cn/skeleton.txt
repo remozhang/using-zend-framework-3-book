@@ -1,22 +1,38 @@
 ﻿# Zend Skeleton Application {#skeleton}
 
+# Zend 框架应用程序
+
 Zend Framework 3 provides you with the so called "skeleton application" to make it easier to create 
 your new websites from scratch. In this chapter, we will show how to install the skeleton 
 application and how to create an Apache virtual host. It is recommended that you refer to 
 [Appendix A. Configuring Web Development Environment](#devenv) before reading this chapter to get your development 
 environment configured.
 
+Zend Framework3 提供称为 "skeleton application" 使得更为简单地去从头创建应用. 在这个章节, 我们会展示给你
+如何创建一个 Apache 虚拟主机. 推荐你在阅读本章节去获取环境配置前去参考[附录 A. 配置网络开发环境](#devenv).
+
 ## Getting Zend Skeleton Application
 
+## 获取 Zend 框架应用
+
 The Skeleton Application is a simple ZF3-based application that contains 
-most necessary things for creating your own website. 
+most necessary things for creating your own website.
+
+这个框架应用是简化的基于 ZF3 的应用. 包含绝大多数创建你自己站点时所必要的东西.
 
 The skeleton application's code is stored on GitHub code hosting and can be publicly 
 accessed by [this link](https://github.com/zendframework/ZendSkeletonApplication).
 However, you typically do not download the source code of the skeleton application directly, 
 instead you use [Composer](http://getcomposer.org/) dependency manager, as shown below.
 
+这个框架应用的代码被存储在 GitHub 代码主机上, 能被公开访问通过
+[这个链接](https://github.com/zendframework/ZendSkeletonApplication).
+然而, 你通常不会下载直接下载这个框架应用的源代码, 取而代之, 你可以使用 [Composer](http://getcomposer.org/)
+依赖管理, 见下文.
+
 First, you need to get the latest version of Composer. You do this with the following commands:
+
+首先, 你需要去获取最新的 composer, 你可以通过下面的命令:
 
 ```
 cd ~
@@ -29,11 +45,17 @@ php -r "unlink('composer-setup.php');"
 ```
 
 The commands above change your working directory to be your home directory, download the `composer-setup.php` installer script 
-to your working directory, run it, and, finally, remove the installer. 
+to your working directory, run it, and, finally, remove the installer.
+
+这个上述命令行将你的工作目录指向为你的 home 目录, 下载 `composer-setup.php` 安装器脚本到
+你的工作目录, 运行这个脚本, 最后, 移除, 这个安装器脚本.
 
 T> Once you run the commands above, you should have the `composer.phar` file in your working directory.
+T> 一旦你运行了上述的命令, 你会有一个 `composer.phar` 文件到你的当前工作目录.
 
 Now, type the following command from your command prompt:
+
+现在, 从你的命令行提示框键入随后的命令:
 
 ```
 php composer.phar create-project -sdev zendframework/skeleton-application helloworld
@@ -45,7 +67,14 @@ Your answers will help the installer to determine which dependencies to install.
 If you don't know what to answer, answer 'n' (no); you will be able to install additional dependencies
 later at any time.
 
+这个上述的命令下载 Zend 框架应用到 `helloworld` 目录以及运行了它的交互安装器.
+你现在应该回答几个是/否的问题通过键入 `y` 和 `n` 和按回车,
+你的回复可以帮助安装器去确认哪个依赖需要去安装. 如果你不知道怎么回答, 就回答 'n' (否);
+你可以安装附加依赖在任意晚点的时间.
+
 For the beginning, you can answer the questions the following way:
+
+一开始, 你可以回答问题跟随以下方式:
 
 ```
     Do you want a minimal install (no optional packages)? Y/n
@@ -97,6 +126,9 @@ Once you answer the questions, the installer will download and install all neces
 you to which config file you would like to inject information about installed modules. When prompted,
 type '1' and press Enter:
 
+一旦你回答了问题, 这个安装器就会下载安装全部必要的包以及询问关于安装模块的信息, 你想要注入哪个配置文件,
+当提示框键入 '1' , 按下回车:
+
 ```
  Please select which config file you wish to inject 'Zend\Form' into:
   [0] Do not inject
@@ -111,17 +143,23 @@ Next, the installer will ask you if you would like to remove existing version co
 Since you will probably store your web application in your own version control system (like Git) and do not need
 existing VCS files, type 'y' and press Enter:
 
+接着, 这个安装器会问你是否愿意从项目中移除已经存在的版本控制文件. 由于你可能会将你的网络应用存储在你
+自己的版本控制系统中(像 Git), 所以不需要已经存在的 VCS 文件, 键入 'y', 按下回车:
+
 ```
 Do you want to remove the existing VCS (.git, .svn..) history? [Y,n]? y
 ```
 
 Now copy `composer.phar` file to your new `helloworld` directory:
+现在, 将 `composer.phar` 文件拷贝到你新的 `helloworld` 目录下:
 
 ```
 cp composer.phar helloworld
 ```
 
 And final and very important step is enabling the *development mode* by typing the following command:
+
+接着最后非常重要的异步就是启动 *development mode*, 通过键入以下命令开启:
 
 ~~~
 cd helloworld
@@ -137,78 +175,134 @@ I> Once you have finished the development, you can enable the *production* mode 
 I> 
 I> `php composer.phar development-disable`
 
+I> 这个开发模式是当你 *develop* 你的应用时被使用得非常典型. 当你开启这个开发模式
+I> 附带的 "development" 配置文件被创建到你的网络应用的 `config` 目录当中. 在这个模式下
+I> 你的应用可能会随意读取附带的 "development" 模块. 在这种模式下, 配置缓存也是不可用的,
+I> 允许你去改变你的网站配置文件以及马上看到改变.
+I>
+I> 一旦你完成了开发, 你可以开启 *production* 模式通过键入以下:
+I> `php composer.phar development-disable`
+
 Congratulations! The hard work is done. Now let's look inside the `helloworld` directory.
 
+恭喜你! 最困难的工作已经完成. 现在让我们往 `helloworld` 目录里面看.
+
 ## Typical Directory Structure
+## 典型的目录结构
 
 Every ZF3-based website (including the skeleton application) is organized in the same recommended way. 
 Of course, you can configure your application to use a different directory layout, but this may 
 make it difficult to support your website by other people who are not familiar
 with such a directory structure.
 
+每一个基于 ZF3 的网络站点 (包括框架引用) 都是用同样推荐的方法被组织起来.
+当然, 你能使用不同的目录层去配置你的应用, 但是这样使得其他人可能跟你的目录结构不同导致接手你的站点变得更为困难.
+
 Let's have a brief look at the typical directory structure (see figure 2.1):
+让我们简短地看一下典型的目录结构(见 图 2.1):
 
 ![Figure 2.1. Typical Directory Structure](images/skeleton/skeleton_dir_structure.png)
+![图 2.1. 典型的目录结构](images/skeleton/skeleton_dir_structure.png)
 
 As you can see, in the top-level directory (we will denote it `APP_DIR` from now on),
 there are several files:
+正如你所看到的, 在这最上层的目录(从现在开始, 我们把它命名为 `APP_DIR`),
+那里有几个文件:
 
 * `composer.json` is a JSON configuration file for Composer.
+* `composer.json` 是 Composer 的一个 JSON 格式的配置文件.
 
 * `composer.lock` file contains information about packages installed with Composer.
+* `composer.lock` 文件包含关于 Composer 已经安装的包的信息.
 
 * `composer.phar` is an executable PHP archive containing the code 
   of Composer dependency management tool.
+* `composer.phar` 是一个 可执行的 PHP 归档, 它包含 Composer 依赖管理工具的代码.
 
 * `docker-compose.yml` and `Dockerfile` files are auxiliary files used only if you use [Docker](https://www.docker.com) container manager tool. 
   In this book, we do not cover usage of Docker.
+* `docker-composer.yml` 和 `Dockerfile` 文件是辅助文件, 仅仅当你使用 [Docker](https://www.docker.com) 容器管理工具时被用到.
+  在这本书中, 我们不会涵盖 Docker 的使用方法.
 
 * `LICENSE.md` is a text file containing ZF3 license (you had a chance to read it in 
  [Introduction to Zend Framework 3](#intro)).
-  Do not remove or modify this file, because ZF3 license doesn't allow to do so. 
+  Do not remove or modify this file, because ZF3 license doesn't allow to do so.
+* `LICENSE.md` 是一个文本文件, 它包含 ZF3 许可证(你有机会阅读到他在
+  [Zend Framework 3 概述](#intro)).
+  不要移除或者修改这个文件, 因为 ZF3 许可证不允许这样做.
 
 * `phpunit.xml.dist` file is a configuration for [PHPUnit](https://phpunit.de/) (unit testing framework). You use this file
   when you want to create unit tests for your website.
+* `phpunit.xml.dist` 文件是一个属于 [PHPUnit](https://phpunit.de/) (单元测试框架)的配置文件. 当你想为你的站点创建单元测试的时候使用他
   
 * `README.md` is a text file containing a brief description of the skeleton application. You typically
   will replace this file contents with the information about your website: its name, what it does,
   and how to install it.
+* `README.md` 是一个包含一个框架应用简短描述的文本文件. 你一般会用你的站点信息替换掉它, 它的名字, 它用来干啥, 以及怎样去安装他.
    
-* `TODO.md` is an auxiliary file that can be safely removed.   
+* `TODO.md` is an auxiliary file that can be safely removed.
+* `TODO.md` 是一个辅助文件, 可以被安全地移除.
   
 * `Vagrantfile` is an auxiliary file that contains configuration for [Vagrant](https://www.vagrantup.com/), which is a virtual development
   environment manager. You can ignore this file if you don't know what is Vagrant. In this book, we do not use Vagrant.
+* `Vagrantfile` 是一个辅助文件, 包含属于 [Vagrant](https://www.vagrantup.com/) 的配置信息, Vagrant 是一个虚拟开发环境管理器.
+  你能忽略掉这个文件如果你不知道什么是 Vagrant . 在这本书中, 我们不使用 Vagrant.
 
 And we also have several subdirectories:
 
+以及我们同样有几个子目录:
+
 The `config` directory contains application-level configuration files.
 
+`config` 目录包含应用级的配置文件
+
 The `data` directory contains the data your application might create; it may also contain cache used to speed-up Zend Framework.
+
+`data` 目录包含你的应用可能创建的数据; 它也包含缓存, 为了去加快 Zend Framework 的速度.
 
 The `module` directory contains all application modules. Currently there is a 
 single module called `Application`. The `Application` is the main module of your 
 website. You can also put other modules here, if you wish. We will talk about
 the modules a little bit later.
 
+`module` 目录包含了所有应用模块. 目前有一个单一的名叫 `Application`的模块. `Application` 是你的站点的主要模块
+你也能将其他模块放在这里, 如果你期待, 我们会在后续中更为深入地讨论这个模块.
+
 The `vendor` directory's purpose is to contain third-party library files, including 
 Zend Framework 3 library files. This directory is typically populated by Composer.
+
+`vendor` 目录的目的是包含第三方库文件, 包括 Zend Framework 3 库文件. 这个目录一般被 Composer 填充.
 
 The `public` directory contains data publicly accessible by the web-user. As you can see, web-users
 will mainly communicate with the `index.php`, which is also called the *entry point* of your website.
 
+`public` 目录包含的数据对于网络用户可以公开访问. 你可以看到, 用户主要与 `index.php` 交流. 也被称为是你的站点的入口点.
+
 I>Your website will have a single entry point, *index.php*, because this is more secure than allowing
 I>anyone to access all your PHP files.
 
+I> 你的站点将会有一个单一的入口点, *index.php*, 因为这会比允许任何人访问你所有 PHP 文件更为安全.
+
 Inside of the `public` directory, you can also find hidden `.htaccess` file. Its main purpose is to define 
-URL rewriting rules. 
+URL rewriting rules.
+
+作为 `public` 目录的替代, 你可以找到隐藏的 `.htaccess` file. 它的主要目标是定义 URL 重写规则.
 
 The `public` directory contains several subdirectories also publicly accessible by web-users:
+
+`public` 目录包含几个子文件夹也能被用户公开访问到:
 
 * `css` subdirectory contains all publicly accessible CSS files;
 * `fonts` subdirectory contains application-specific web-fonts;
 * `img` subdirectory contains publicly accessible images (*.JPG, *.PNG, *.GIF, *.ICO, etc.);
 * and `js` subdirectory stores publicly accessible JavaScript files used by your web-pages. 
-  Typically, files of [jQuery](http://jquery.com/) library are placed here, but you can put your own JavaScript files here, too.        
+  Typically, files of [jQuery](http://jquery.com/) library are placed here, but you can put your own JavaScript files here, too.
+
+* `css` 子文件夹包含所有公开访问的 CSS files;
+* `fonts` 子文件夹包含应用中特定的网络字体;
+* `img` 子文件夹包含公开访问的图片(*.JPG, *.PNG)
+* 以及 `js` 子文件夹存储你的网站页面中公开的 JavaScript 文件, 一般而言, [jQuery](http://jquery.com/) 库会替换到这里, 但你能将
+  你的 JavaScript 文件放在这里
 
 Q> **What is jQuery library?**
 Q> 
@@ -219,6 +313,9 @@ Q> it really simple to make your HTML pages interactive.
 Because the Zend Skeleton Application is stored on GitHub, inside of the directory structure, 
 you can find hidden `.gitignore` file. This is a [GIT](http://git-scm.com/) version control 
 system's files. You can ignore it (or even remove them if you do not plan to store your code in a GIT repository).
+
+因为 Zend 框架被存放在 GitHub, 在目录框架里面, 你能找到隐藏的 `.gitignore` 文件. 它是一个 [GIT](http://git-scm.com/)
+版本控制系统文件, 你能忽略掉它(你不打算在一个 GIT 仓库中存储你的代码甚至或者呢可以移除掉它).
 
 ## Application Dependencies
 
