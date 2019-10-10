@@ -563,23 +563,33 @@ in almost any web application:
 
   * @`Zend\ServiceManager`.  This is the centralized registry of all services available in the application, 
      making it possible to access services from any point of the web site.
+  * @`Zend\ServiceManager`. 这是一个包含在应用内可用的所有服务的一个集中式注册器,
+  使得从站点中任意一点访问服务变为可能.
    
   * @`Zend\Http` provides an easy interface for performing Hyper-Text Transfer Protocol (HTTP) 
-    requests.                              
+    requests.
+  * @`Zend\Http` 为执行 HTTP 提供一个简单的接口.
      
   * @`Zend\Mvc`. Support of Model-View-Controller pattern and separation of business logic from 
-    presentation. 
+    presentation.
+  * @`Zend\Mvc`. 提供对于 MVC 模式的支持以及从展示层中分离出商业逻辑.
 
   * @`Zend\View`. Provides a system of helpers, output filters, and variable escaping. Used in 
-    presentation layer.                      
+    presentation layer.
+  * @`Zend\View`. 提供使用在展示层的一系列帮助, 输出过滤, 转义变量.
 
-  * @`Zend\Form`. Web form data collection, filtering, validation and rendering.  
+  * @`Zend\Form`. Web form data collection, filtering, validation and rendering.
+  * @`Zend\Form`. 网页表单数据收集, 过滤, 校验以及渲染.
 
-  * @`Zend\InputFilter`. Provides an ability to define form data validation rules. 
+  * @`Zend\InputFilter`. Provides an ability to define form data validation rules.
+  * @`Zend\InputFilter`. 提供一个定义表单数据确认规则的能力.
     
-  * @`Zend\Filter`. Provides a set of commonly used data filters, like string trimmer. 
+  * @`Zend\Filter`. Provides a set of commonly used data filters, like string trimmer.
+  * @`Zend\Filter`. 提供一套常用的数据过滤器.
 
-  * @`Zend\Validator`. Provides a set of commonly used validators.  
+
+  * @`Zend\Validator`. Provides a set of commonly used validators.
+  * @`Zend\Validator`. 提供一套常用的校验器.
 
 ## Differences with Zend Framework 2
 
@@ -644,6 +654,7 @@ Now each component repository contains its own documentation. Documentation is n
 and has become better designed.  
  
 ## Summary
+## 小结
 
 A PHP framework is a library, giving you the code base and defining consistent ways of creating
 web applications. Zend Framework 3 is a modern web development framework created by Zend Technologies,
@@ -651,3 +662,6 @@ the vendor of PHP language. It provides the developers
 with outstanding capabilities for building scalable and secure web sites. ZF3 is licensed under BSD-like
 license and can be used for free in both commercial and open-source applications.
 
+一个 PHP 框架就是一个库, 给予你基础代码以及定义创建网页应用的组成方式的能力. Zend Framework 3 是一个
+被 PHP 语言创造者 Zend Technologies 的创建的现代网络开发框架. 它提供开发者创建扩展以及安全网络站点的杰出的能力
+ZF3 是基于 BSD-like 的许可证进行授权的, 能被免费使用在商业和开源软件上.
